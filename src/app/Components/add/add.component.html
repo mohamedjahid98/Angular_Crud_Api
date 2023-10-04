@@ -1,0 +1,96 @@
+<div class="card-box">
+    <form [formGroup]="register" (ngSubmit)="submitForm()">
+
+        <div class="row">
+            <!--Depend on header-->
+
+            <h1 style="text-align: center;">{{ isEditMode ? 'Update' : 'Add' }} User</h1>
+            <!--Error Message-->
+
+            <span style="text-align: center;" class={{messageclass}}>{{message}}</span>
+
+        </div>
+        <!--Back User Datas page-->
+        <a routerLink="/user" id="addbtn" class="btn btn-primary btn-rounded">Back</a>
+        
+        <div class="col-lg-12" style="margin-left: 20%;">
+            <!--All input data's with Validation-->
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label for="txtcode" hidden>Id</label>
+                        <input type="text" id="txtcode" class="form-control" hidden formControlName="id"
+                            autocomplete="off" />
+                    </div>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class=" col-lg-3">
+                    <div class="form-group">
+                        <label for="txtname">First Name</label><span style="color: red;">*</span>
+                        <input type="text" placeholder="Enter First Name" class="form-control" [(ngModel)]="formData.firstName"
+                            formControlName="firstName" autocomplete="off" required/>
+                        <span *ngIf="name && name.invalid && name.touched" class="error">Enter valid First Name</span>
+                    </div>
+                </div>
+                <div class=" col-lg-3">
+                    <div class="form-group">
+                        <label for="txtname">Last Name</label><span style="color: red;">*</span>
+                        <input type="text" placeholder="Enter Last Name" class="form-control" formControlName="lastName"
+                            [(ngModel)]="formData.lastName" autocomplete="off" required/>
+                        <span *ngIf="lastName && lastName.invalid && lastName.touched" class="error">Enter Last Name</span>
+                    </div>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class=" col-lg-3">
+                    <div class="form-group">
+                        <label for="txtemail">Email</label><span style="color: red;">*</span>
+                        <input type="text" placeholder="txtemail" class="form-control" formControlName="email"
+                            [(ngModel)]="formData.email" autocomplete="off" required/>
+                        <span *ngIf="email && email.invalid && email.touched" class="error">Enter valid Email</span>
+                    </div>
+                </div>
+                <div class=" col-lg-3">
+                    <div class="form-group">
+                        <label>Age</label><span style="color: red;">*</span>
+                        <input type="number" placeholder="Enter Age" class="form-control" formControlName="age" autocomplete="off"
+                            [(ngModel)]="formData.age" required/>
+                        <span *ngIf="age && age.invalid && age.touched" class="error">Enter valid Age</span>
+                    </div>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label for="txtphone">Phone</label><span style="color: red;">*</span>
+                        <input type="text" id="txtphone" placeholder="Enter Number" class="form-control" formControlName="phone"
+                            [(ngModel)]="formData.phone" autocomplete="off" required/>
+                        <span *ngIf="phone && phone.invalid && phone.touched" class="error">Please enter phone</span>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <label >Gender</label><span style="color: red;">*</span>
+                        <select class="form-select" formControlName="gender" [(ngModel)]="formData.gender" aria-placeholder="select gender" required>
+                            <option selected disabled value="">Choose...</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                        <span *ngIf="gender && gender.invalid && gender.touched" class="error">Please select
+                            gender</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-2">
+                    <br>
+                    <div class="form-group">
+                        <!--Add Button or Update Button-->
+                        <button type="submit"[disabled]="!register.valid" class="btn btn-success">{{ isEditMode ? 'Update' : 'Add' }} Data</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

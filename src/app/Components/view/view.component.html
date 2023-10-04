@@ -1,0 +1,49 @@
+<div class="card-box">
+  <div class="row">
+    <div class="col-sm-12">
+      <h2 style="text-align: center;">User Data</h2>
+      <!-- create button-->
+      <a routerLink="create" style="float: right;" id="addbtn" class="btn btn-success btn-rounded">Add New</a>
+    </div>
+  </div>
+  <br>
+
+  <div class="row">
+    <!--Table Data-->
+    <div class="table-responsive">
+      <table class="table table-bordered" id="datatable" role="grid">
+        <thead class="bg-primary text-white">
+          <tr role="row">
+            <th scope="col">Id</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of customerdata">
+            <td>{{item.id}}</td>
+            <td>{{item.firstName}}</td>
+            <td>{{item.lastName}}</td>
+            <td>{{item.age}}</td>
+            <td>{{item.email}}</td>
+            <td>{{item.gender}}</td>
+            <td>{{item.phone}}</td>
+            <td>&nbsp;&nbsp;&nbsp;
+
+              <!--Update Button-->
+              <button routerLink="Edit/{{item.id}}" class="btn btn-primary">Edit</button>
+
+              <!--Delete Button-->
+              &nbsp;&nbsp;<button (click)="delete(item.id)" class="btn btn-danger">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
